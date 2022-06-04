@@ -1,0 +1,12 @@
+--176. Second Highest Salary
+--problem link : - https://leetcode.com/problems/second-highest-salary/
+--Medium
+
+
+select
+  case when max(salary) is null then null else salary end SecondHighestSalary 
+from (
+  select salary , dense_rank() over (order by salary desc) as rn
+  from Employee
+)r
+where rn = 2
