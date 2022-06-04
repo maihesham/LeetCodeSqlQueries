@@ -1,0 +1,16 @@
+--https://leetcode.com/problems/nth-highest-salary/
+--Medium
+
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  RETURN (
+       select
+         case when max(salary) is null then null else salary end getNthHighestSalary 
+     from (
+            select  salary , ROW_NUMBER() OVER(order by salary desc) as rn from
+            (select distinct salary from  Employee) z
+      )r
+     where rn = N
+  );
+END
