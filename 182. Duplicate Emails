@@ -1,0 +1,9 @@
+problem link :- https://leetcode.com/problems/duplicate-emails/
+Easy 
+solution 1:-
+select distinct pp.email as Email from Person p inner join Person pp
+on pp.id!=p.id and pp.email=p.email
+
+solution 2:-
+select distinct email as Email from Person p 
+where p.email in (select email from Person pp where pp.id!=p.id)
