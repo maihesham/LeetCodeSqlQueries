@@ -1,0 +1,16 @@
+183. Customers Who Never Order
+Easy
+URL_: https://leetcode.com/problems/customers-who-never-order/
+
+Solution 1:-
+select c.name As Customers from Customers c left join Orders o 
+on c.id=o.customerId
+where o.id is null
+
+Solution 2:-
+select customers.name as 'Customers'
+from customers
+where customers.id not in
+(
+    select customerid from orders
+);
